@@ -1,11 +1,12 @@
 package com.graphs.model;
 
+//Classe caminhos
 public class Edge {
-	
-	private int value;
-	
-	private Node node;
-	
+
+	private int value; // Cria os métodos set and get para dar valor para o nó
+
+	private Node node; // Cria um atributo da classe Node, com getters e setters
+
 	public Edge() {
 	}
 
@@ -29,8 +30,5 @@ public class Edge {
 	public void setNode(Node node) {
 		this.node = node;
 	}
-	
-	
-	
 
 }

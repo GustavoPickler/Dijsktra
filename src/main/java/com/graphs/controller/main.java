@@ -9,8 +9,10 @@ import com.graphs.model.Edge;;
 
 public class main {
 
+	@SuppressWarnings("null")
 	public static void main(String[] args) {
 
+		//Relacionando os nós aos seus numeros
 		Node node1 = new Node(1);
 		Node node2 = new Node(2);
 		Node node3 = new Node(3);
@@ -32,6 +34,7 @@ public class main {
 		Node node19 = new Node(19);
 		Node node20 = new Node(20);
 
+		//Setando os valores dos caminhos e relacionando com os nós 
 		node1.setEdges(Arrays.asList(new Edge(861, node4), new Edge(211, node6), new Edge(586, node10), new Edge(753, node12),new Edge(382, node13), new Edge(896, node14)));
 		node2.setEdges(Arrays.asList(new Edge(423, node3), new Edge(617, node4), new Edge(365, node5), new Edge(357, node10),
 				new Edge(806, node13)));
@@ -69,24 +72,31 @@ public class main {
 				new Edge(455, node20)));
 		node20.setEdges(Arrays.asList(new Edge(326, node18), new Edge(455, node19)));
 
+		
 		Node de = node1;
 		Node para = node20;
 		boolean chegou = false;
 		int menorDist = 0;
 		int somaMenorCaminho = 0;
 		Node nodeAtual = new Node();
+		List<Node> nodesPercorridos = null;
+		List<Node> historico = null;
 
-		//while (chegou) {
-
+		//while (chegou) { 
+			
 			menorDist = pegaMenorDistancia(de, menorDist);
 			nodeAtual = vaiParaNodeMenor(de, menorDist);
-			System.out.println(menorDist+" "+nodeAtual.getNumber());
-			menorDist = pegaMenorDistancia(nodeAtual, menorDist);
+			nodesPercorridos.add(nodeAtual);
+			
+			historico = guardaVizinhos(nodeAtual);
+			if(menorDist = pegaMenorDistancia(nodeAtual, menorDist) > );
+		
 			
 			
 		//}
 	}
 
+	// Pega o nó inicial e pega o caminho com menor distancia
 	private static Node vaiParaNodeMenor(Node de, int menorDist) {
 		Node nodeAtual = null;
 		for (int i = 0; i < de.getEdges().size(); i++) {
@@ -95,8 +105,9 @@ public class main {
 			}
 		}
 		return nodeAtual;
-	}
-
+	} 
+	
+	// Escolhe o nó com o caminho de menor distancia
 	private static int pegaMenorDistancia(Node de, int menorDist) {
 		for (int i = 0; i < de.getEdges().size(); i++) {
 			if (menorDist == 0) {
@@ -107,6 +118,15 @@ public class main {
 			}
 		}
 		return menorDist;
+	}
+
+	// Guarda os vizinho para retornar se o valor deles for menor que o caminho percorrido.
+	public static List<Node> guardaVizinhos(Node node) {
+		List<Node> nodes = null;
+		for (int i = 0; i < node.getEdges().size(); i++) {
+			nodes.add(node.getEdges().get(i).getNode());
+		}
+		return nodes;
 	}
 
 }
